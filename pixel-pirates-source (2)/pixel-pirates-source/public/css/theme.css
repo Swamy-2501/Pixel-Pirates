@@ -1,0 +1,82 @@
+body::before {
+  background: linear-gradient(rgba(35, 61, 56, 0.025) 1px, transparent 1px) 0 0 / 100% 32px;
+}
+.btn-primary { color: #fff; background: var(--green); }
+.btn-primary:hover { color: #fff; background: #125f4d; }
+.sidebar { background: var(--panel); }
+.logo { background: color-mix(in srgb, var(--green) 9%, white); border-color: color-mix(in srgb, var(--green) 25%, white); box-shadow: none; }
+.nav a:hover { background: color-mix(in srgb, var(--cyan) 5%, white); }
+.nav a.active { background: color-mix(in srgb, var(--green) 8%, white); }
+.nav a.active::before { box-shadow: none; }
+.nav .count { background: color-mix(in srgb, var(--critical) 9%, white); color: var(--critical); }
+.sidebar-foot { background: var(--panel-2); }
+.topbar { background: rgba(241, 245, 244, 0.94); }
+.card { background: var(--panel); }
+th { background: var(--panel-2); }
+tbody tr:hover { background: color-mix(in srgb, var(--cyan) 4%, white); }
+input, select, textarea { background: var(--panel); border-color: var(--line-strong); color: var(--text); }
+input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--cyan) 14%, transparent); }
+.field.invalid input, .field.invalid select, .field.invalid textarea { box-shadow: 0 0 0 3px color-mix(in srgb, var(--critical) 12%, transparent); }
+.field .error { color: var(--critical); }
+.chip.active { color: #fff; background: var(--cyan); border-color: var(--cyan); }
+.empty .e-icon { background: color-mix(in srgb, var(--cyan) 6%, white); }
+.spinner { border-color: color-mix(in srgb, var(--cyan) 20%, transparent); }
+.skeleton { background: linear-gradient(90deg, var(--panel-2), var(--bg-2), var(--panel-2)); }
+.modal-backdrop { background: rgba(23, 42, 39, 0.4); }
+.signal { background: var(--panel-2); }
+.column { background: var(--panel-2); }
+.qa { background: var(--panel); }
+.qa:hover { background: color-mix(in srgb, var(--green) 4%, white); }
+
+.l-nav { background: rgba(241, 245, 244, 0.94); }
+.l-account-links { display: flex; align-items: center; gap: 16px; margin-left: auto; font-size: 14px; font-weight: 500; }
+.event-tag { border-color: color-mix(in srgb, var(--green) 25%, white); background: color-mix(in srgb, var(--green) 6%, white); }
+.grad { background: none; color: var(--green); }
+.hv-glow { display: none; }
+.hv-card { background: var(--panel); border-radius: var(--radius); box-shadow: var(--shadow); }
+.hv-score li { background: var(--panel-2); }
+.hv-feed { background: var(--panel); border-radius: var(--radius); }
+.stripe { background: var(--panel-2); }
+.feature { background: var(--panel); border-radius: var(--radius); }
+.steps li, .threat-list li { background: var(--panel); }
+.team-card { background: var(--panel); border-color: var(--line-strong); border-radius: var(--radius); }
+.l-foot { background: var(--panel); }
+
+.account-page { min-height: 100vh; background: var(--bg-2); }
+.account-layout { min-height: 100vh; max-width: 1080px; margin: 0 auto; padding: 48px 28px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 470px); grid-template-rows: 1fr auto; align-items: center; column-gap: clamp(48px, 9vw, 120px); }
+.account-brand { grid-column: 1; grid-row: 1; align-self: end; padding: 0; }
+.account-brand strong { font-size: 20px; }
+.account-brand small { font-size: 11px; }
+.account-panel { grid-column: 2; grid-row: 1 / span 2; padding: 34px; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); animation: rise 0.28s ease-out both; }
+.account-mark { width: 42px; height: 42px; display: grid; place-items: center; margin-bottom: 24px; color: var(--green); background: color-mix(in srgb, var(--green) 8%, white); border-radius: 8px; }
+.account-mark svg { width: 22px; height: 22px; }
+.account-panel .eyebrow { color: var(--cyan); margin-bottom: 9px; }
+.account-panel h1 { font-size: 26px; }
+.account-intro { color: var(--muted); margin: 9px 0 22px; font-size: 14px; }
+.account-panel form { display: grid; gap: 14px; }
+.account-panel .field > span { color: var(--text); }
+.account-panel input:not([type=checkbox]) { height: 42px; }
+.account-panel .field-hint { display: block; color: var(--muted); margin-top: 6px; font-size: 12px; }
+.account-panel .check-field { display: flex; align-items: flex-start; gap: 10px; color: var(--muted); font-size: 13px; }
+.account-panel .check-field input { width: 16px; height: 16px; margin: 2px 0 0; accent-color: var(--green); flex: 0 0 auto; }
+.account-submit { width: 100%; margin-top: 4px; }
+.account-panel .account-inline { display: flex; justify-content: flex-end; margin-top: -6px; font-size: 13px; }
+.account-switch { margin-top: 22px; text-align: center; color: var(--muted); font-size: 13px; }
+.account-switch a, .account-inline a { color: var(--cyan); font-weight: 600; }
+.account-foot { grid-column: 1; grid-row: 2; align-self: start; color: var(--muted); font-size: 13px; max-width: 300px; }
+.form-alert { padding: 11px 12px; margin: 0 0 16px; border-radius: 6px; background: color-mix(in srgb, var(--cyan) 7%, white); color: var(--text); font-size: 13px; }
+.form-alert.error { background: color-mix(in srgb, var(--critical) 8%, white); color: var(--critical); }
+.form-alert[hidden] { display: none; }
+.recovery-note { padding: 10px 12px; margin: 0 0 16px; border-left: 3px solid var(--cyan); background: var(--panel-2); color: var(--muted); font-size: 13px; }
+.resend-button { width: 100%; }
+.resend-button:disabled { opacity: 0.7; }
+.session-name { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 13px; }
+
+@media (max-width: 720px) {
+  .l-account-links { gap: 12px; }
+  .account-layout { min-height: 100svh; grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; gap: 24px; padding: 26px 16px; }
+  .account-brand { grid-column: 1; grid-row: 1; }
+  .account-panel { grid-column: 1; grid-row: 2; width: 100%; padding: 26px 20px; }
+  .account-foot { grid-column: 1; grid-row: 3; margin: 0; }
+  .session-name { display: none; }
+}

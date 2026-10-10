@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Pirates</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Case Management</div>
+        <h1>Investigations</h1>
+        <p>Follow each impersonation case from first detection to takedown. Open a case from any scan, or log one by hand.</p>
+      </div>
+      <div class="actions"><button class="btn btn-primary" id="new-case"><i data-lucide="folder-plus"></i>New investigation</button></div>
+    </div>
+
+    <div class="toolbar">
+      <div class="search"><i data-lucide="search"></i><input type="search" id="case-search" placeholder="Search cases, candidates, brands…" aria-label="Search investigations" /></div>
+      <select id="case-priority" aria-label="Filter by priority">
+        <option value="">All priorities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option>
+      </select>
+      <select id="case-brand" aria-label="Filter by brand"><option value="">All brands</option></select>
+    </div>
+
+    <div id="board-host"><div class="loading-block"><span class="spinner"></span>Loading investigations…</div></div>
+  </div>
+
+  <div class="modal-backdrop" id="case-modal">
+    <div class="modal wide" role="dialog" aria-modal="true" aria-labelledby="case-title">
+      <div class="modal-head">
+        <div><div class="mono dim" id="case-id" style="font-size:12px"></div><h3 id="case-title">Investigation</h3><p id="case-sub"></p></div>
+        <button class="btn btn-ghost icon-btn" data-close aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <div id="case-detail"></div>
+      <form id="case-form" novalidate>
+        <div class="divider"></div>
+        <div class="form-grid">
+          <label class="field full"><span>Case title</span><input name="title" required minlength="3" maxlength="200" /><div class="error"></div></label>
+          <label class="field"><span>Status</span><select name="status"><option value="open">Open</option><option value="in_progress">In progress</option><option value="takedown_requested">Takedown requested</option><option value="resolved">Resolved</option><option value="dismissed">Dismissed (false positive)</option></select></label>
+          <label class="field"><span>Priority</span><select name="priority"><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
+          <label class="field full"><span>Analyst notes</span><textarea name="notes" maxlength="5000" rows="5" placeholder="Evidence collected, takedown reference numbers, next steps…"></textarea><div class="error"></div></label>
+        </div>
+        <div class="form-actions" style="justify-content:space-between">
+          <button type="button" class="btn btn-danger" id="case-delete"><i data-lucide="trash-2"></i>Delete</button>
+          <div style="display:flex;gap:10px"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary" id="case-save"><i data-lucide="save"></i>Save case</button></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="new-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="new-title">
+      <div class="modal-head">
+        <div><h3 id="new-title">New investigation</h3><p>Log a case manually, e.g. a customer report. To link a case to a scan, open it from the scan report.</p></div>
+        <button class="btn btn-ghost icon-btn" data-close aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <form id="new-form" novalidate>
+        <div class="form-grid">
+          <label class="field full"><span>Brand <em>required</em></span><select name="brandId" required></select><div class="error"></div></label>
+          <label class="field full"><span>Title <em>required</em></span><input name="title" required minlength="3" maxlength="200" placeholder="Customer reported fake support number on Facebook" /><div class="error"></div></label>
+          <label class="field"><span>Priority</span><select name="priority"><option value="medium">Medium</option><option value="critical">Critical</option><option value="high">High</option><option value="low">Low</option></select></label>
+          <label class="field full"><span>Notes <em>optional</em></span><textarea name="notes" maxlength="5000" placeholder="What was reported, where, and by whom"></textarea></label>
+        </div>
+        <div class="form-actions"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary" id="new-save"><i data-lucide="folder-plus"></i>Open case</button></div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="/js/investigations.js"></script>
+</body>
+</html>

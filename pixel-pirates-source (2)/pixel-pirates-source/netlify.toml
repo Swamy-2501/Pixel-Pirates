@@ -1,0 +1,30 @@
+[build]
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/signup"
+  to = "/account.html?flow=signup"
+  status = 200
+
+[[redirects]]
+  from = "/signin"
+  to = "/account.html?flow=signin"
+  status = 200
+
+[[redirects]]
+  from = "/verify-email"
+  to = "/account.html?flow=verify-email"
+  status = 200
+
+[[redirects]]
+  from = "/forgot-password"
+  to = "/account.html?flow=forgot-password"
+  status = 200
+
+[[redirects]]
+  from = "/reset-password"
+  to = "/account.html?flow=reset-password"
+  status = 200

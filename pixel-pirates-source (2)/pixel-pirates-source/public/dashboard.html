@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Pirates</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Security Operations</div>
+        <h1>Threat Overview</h1>
+        <p>Live posture across every registered brand, calculated directly from your scan database.</p>
+      </div>
+      <div class="actions">
+        <button class="btn" id="refresh-btn"><i data-lucide="refresh-cw"></i>Refresh</button>
+        <a class="btn btn-primary" href="/scanner"><i data-lucide="scan-search"></i>Run a scan</a>
+      </div>
+    </div>
+
+    <section class="grid kpis" id="kpis">
+      <div class="card kpi" style="--accent:var(--cyan)"><div class="kpi-top">Registered brands<span class="kpi-icon"><i data-lucide="building-2"></i></span></div><div class="kpi-value" data-kpi="brands"><div class="skeleton" style="width:50px;height:30px"></div></div><div class="kpi-foot">Official identities protected</div></div>
+      <div class="card kpi" style="--accent:var(--blue)"><div class="kpi-top">Scanned candidates<span class="kpi-icon"><i data-lucide="radar"></i></span></div><div class="kpi-value" data-kpi="scans"><div class="skeleton" style="width:50px;height:30px"></div></div><div class="kpi-foot" data-kpi-foot="scans">Profiles, domains &amp; apps</div></div>
+      <div class="card kpi" style="--accent:var(--medium)"><div class="kpi-top">Suspicious<span class="kpi-icon"><i data-lucide="eye"></i></span></div><div class="kpi-value" data-kpi="suspicious"><div class="skeleton" style="width:50px;height:30px"></div></div><div class="kpi-foot" data-kpi-foot="suspicious">Medium risk or above</div></div>
+      <div class="card kpi" style="--accent:var(--critical)"><div class="kpi-top">High-risk<span class="kpi-icon"><i data-lucide="siren"></i></span></div><div class="kpi-value" data-kpi="highRisk"><div class="skeleton" style="width:50px;height:30px"></div></div><div class="kpi-foot">High + critical candidates</div></div>
+      <div class="card kpi" style="--accent:var(--green)"><div class="kpi-top">Open investigations<span class="kpi-icon"><i data-lucide="folder-search"></i></span></div><div class="kpi-value" data-kpi="openInvestigations"><div class="skeleton" style="width:50px;height:30px"></div></div><div class="kpi-foot">Awaiting resolution</div></div>
+    </section>
+
+    <div id="onboarding"></div>
+
+    <section class="grid split-2" style="margin-bottom:18px">
+      <div class="card">
+        <div class="card-head"><h3><i data-lucide="activity"></i>Scan volume · last 14 days</h3><div class="legend"><span style="color:var(--cyan)"><i></i>All scans</span><span style="color:var(--critical)"><i></i>High-risk</span></div></div>
+        <div class="chart-box" id="trend-box"><canvas id="trend-chart" aria-label="Scans per day over the last 14 days"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3><i data-lucide="chart-pie"></i>Risk distribution</h3><span class="sub">All candidates</span></div>
+        <div class="donut-box" id="donut-box"><canvas id="risk-chart" aria-label="Risk level distribution"></canvas><div class="donut-center"><div><b id="donut-total">–</b><small>SCANS</small></div></div></div>
+        <div class="legend" id="risk-legend" style="justify-content:center;margin-top:14px"></div>
+      </div>
+    </section>
+
+    <section class="grid split-2">
+      <div class="card">
+        <div class="card-head"><h3><i data-lucide="scan-search"></i>Recent scans</h3><a href="/scanner#history" class="btn btn-ghost btn-sm">View all<i data-lucide="arrow-right"></i></a></div>
+        <div class="table-wrap" id="recent-scans"><div class="loading-block"><span class="spinner"></span>Loading scans…</div></div>
+      </div>
+      <div class="stack">
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="zap"></i>Quick actions</h3></div>
+          <div class="quick-actions">
+            <a class="qa" href="/brands?new=1"><i data-lucide="building-2"></i><strong>Register brand</strong><span>Add official assets</span></a>
+            <a class="qa" href="/scanner"><i data-lucide="scan-search"></i><strong>New scan</strong><span>Check a candidate</span></a>
+            <a class="qa" href="/investigations"><i data-lucide="folder-search"></i><strong>Investigations</strong><span>Manage open cases</span></a>
+            <a class="qa" href="/scanner?level=high,critical#history"><i data-lucide="siren"></i><strong>High-risk feed</strong><span>Critical &amp; high only</span></a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3><i data-lucide="target"></i>Most-targeted brands</h3></div>
+          <div class="bar-list" id="top-brands"></div>
+        </div>
+        <div class="card" id="activity">
+          <div class="card-head"><h3><i data-lucide="history"></i>Recent activity</h3></div>
+          <ul class="activity" id="activity-list"></ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/js/dashboard.js"></script>
+</body>
+</html>

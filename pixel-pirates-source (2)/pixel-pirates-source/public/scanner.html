@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Pirates</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Digital Risk Scanner</div>
+        <h1>Investigate a Candidate</h1>
+        <p>Compare a suspicious profile, page, domain or app with a registered brand's official assets. Every result is saved to your scan history.</p>
+      </div>
+    </div>
+
+    <div class="scanner-layout">
+      <div class="card">
+        <div class="card-head"><h3><i data-lucide="crosshair"></i>Candidate details</h3><button type="button" class="btn btn-ghost btn-sm" id="example-btn"><i data-lucide="wand-sparkles"></i>Fill example</button></div>
+        <form id="scan-form" novalidate>
+          <div class="form-grid">
+            <label class="field full"><span>Brand to protect <em>required</em></span><select name="brandId" required><option value="">Loading brands…</option></select><div class="error"></div></label>
+            <label class="field"><span>Candidate name <em>required</em></span><input name="candidateName" required maxlength="160" placeholder="e.g. PayNova Support" /><div class="error"></div></label>
+            <label class="field"><span>Platform <em>optional</em></span><select name="candidatePlatform"><option value="">Select platform</option></select></label>
+            <label class="field"><span>Website / domain <em>optional</em></span><input name="candidateDomain" placeholder="paynova-support.xyz" /><div class="error"></div></label>
+            <label class="field"><span>Social handle or profile <em>optional</em></span><div class="input-prefix"><i>@</i><input name="candidateHandle" placeholder="paynova_official or profile URL" /></div><div class="error"></div></label>
+            <label class="field full"><span>App publisher / developer <em>optional</em></span><input name="candidateAppPublisher" maxlength="160" placeholder="Publisher name shown on the app store listing" /><div class="error"></div></label>
+            <label class="field full"><span>Bio, post or listing text <em>optional</em></span><textarea name="candidateDescription" maxlength="2000" placeholder="Paste the profile bio, post content or app description to check for scam language"></textarea><div class="error"></div></label>
+          </div>
+          <p class="hint" style="margin-top:12px"><i data-lucide="info" style="width:13px;height:13px;vertical-align:-2px"></i> Provide at least one of: domain, handle, app publisher or text.</p>
+          <div class="form-actions"><button type="reset" class="btn btn-ghost">Clear</button><button type="submit" class="btn btn-primary" id="scan-submit"><i data-lucide="scan-search"></i>Run risk scan</button></div>
+        </form>
+      </div>
+
+      <div class="card result-card" id="result"></div>
+    </div>
+
+    <div class="card" id="history" style="margin-top:18px">
+      <div class="card-head"><h3><i data-lucide="history"></i>Scan history</h3><span class="sub" id="history-count"></span></div>
+      <div class="toolbar">
+        <div class="search"><i data-lucide="search"></i><input type="search" id="history-search" placeholder="Filter by name, domain, handle, brand…" aria-label="Filter scan history" /></div>
+        <select id="history-brand" aria-label="Filter by brand"><option value="">All brands</option></select>
+        <div class="chips" id="level-chips">
+          <button class="chip" data-level="critical">Critical</button>
+          <button class="chip" data-level="high">High</button>
+          <button class="chip" data-level="medium">Medium</button>
+          <button class="chip" data-level="low">Low</button>
+        </div>
+      </div>
+      <div class="table-wrap" id="history-table"><div class="loading-block"><span class="spinner"></span>Loading history…</div></div>
+    </div>
+  </div>
+  <script type="module" src="/js/scanner.js"></script>
+</body>
+</html>

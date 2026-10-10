@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Pirates</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">Brand Registry</div>
+        <h1>Registered Brands</h1>
+        <p>Official identities are the baseline every scan is compared against. Keep domains, handles and app publishers accurate.</p>
+      </div>
+      <div class="actions"><button class="btn btn-primary" id="add-btn"><i data-lucide="plus"></i>Register brand</button></div>
+    </div>
+
+    <div class="card">
+      <div class="toolbar">
+        <div class="search"><i data-lucide="search"></i><input type="search" id="brand-search" placeholder="Search name, domain, handle, publisher…" aria-label="Search brands" /></div>
+        <div class="chips" id="brand-filter" role="tablist">
+          <button class="chip active" data-filter="all">All</button>
+          <button class="chip" data-filter="threats"><i data-lucide="siren" style="width:14px;height:14px"></i>Under attack</button>
+          <button class="chip" data-filter="clean">No threats</button>
+          <button class="chip" data-filter="unscanned">Never scanned</button>
+        </div>
+        <select id="brand-sort" aria-label="Sort brands" style="margin-left:auto">
+          <option value="newest">Newest first</option>
+          <option value="oldest">Oldest first</option>
+          <option value="name">Name A–Z</option>
+          <option value="threats">Most threats</option>
+        </select>
+      </div>
+      <div class="table-wrap" id="brand-table"><div class="loading-block"><span class="spinner"></span>Loading brands…</div></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="brand-modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="brand-modal-title">
+      <div class="modal-head">
+        <div><h3 id="brand-modal-title">Register a brand</h3><p>These details are treated as the trusted, official assets.</p></div>
+        <button class="btn btn-ghost icon-btn" data-close aria-label="Close"><i data-lucide="x"></i></button>
+      </div>
+      <form id="brand-form" novalidate>
+        <input type="hidden" name="id" />
+        <div class="form-grid">
+          <label class="field full"><span>Brand name <em>required</em></span><input name="name" required maxlength="80" placeholder="e.g. PayNova" autocomplete="organization" /><div class="error"></div></label>
+          <label class="field"><span>Official website / domain <em>required</em></span><input name="domain" required placeholder="paynova.com" autocomplete="url" /><div class="error"></div><div class="hint">URLs are accepted; we keep only the domain.</div></label>
+          <label class="field"><span>Official social handle <em>required</em></span><div class="input-prefix"><i>@</i><input name="socialHandle" required placeholder="paynova" /></div><div class="error"></div></label>
+          <label class="field"><span>Official app publisher <em>required</em></span><input name="appPublisher" required maxlength="120" placeholder="PayNova Technologies Pvt Ltd" /><div class="error"></div></label>
+          <label class="field"><span>Contact email <em>optional</em></span><input name="contactEmail" type="email" placeholder="security@paynova.com" autocomplete="email" /><div class="error"></div></label>
+        </div>
+        <div class="form-actions"><button type="button" class="btn btn-ghost" data-close>Cancel</button><button type="submit" class="btn btn-primary" id="brand-submit"><i data-lucide="shield-check"></i>Register brand</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/js/brands.js"></script>
+</body>
+</html>
